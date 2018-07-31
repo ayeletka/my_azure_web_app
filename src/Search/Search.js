@@ -2,10 +2,16 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import App from '../App'
 import Result from '../Result/Result';
+import History from '../History/History';
 
+var historyApi = require('../History/HistoryApi');
+var history = require('../History/History');
 
 const API_KEY = '0596e6f076a64db38b8e213594b32599'
 const API_URL = 'https://api.cognitive.microsoft.com/bing/v7.0/search'
+
+
+
 
 
 const SearchButton = (props) => {
@@ -35,7 +41,6 @@ class Search extends Component {
 
         return axios.get(API_URL + '?q=' + encodeURIComponent(this.state.query + "Instagram"), axiosConfig)
         .then(function(response) {
-        	console.log(response.data.webPages.value[0].url)
             return response.data.webPages.value[0].url;
         });
     }
@@ -61,10 +66,13 @@ class Search extends Component {
 	                onClick = {() => {
 	                    this.bingWebSearch()
 	                	.then(function(result){
-	                		this.setState({val: this.state.query, link: result});
+	                		this.setState({val: this.state.query, link: result}, () => {
+                         historyApi.uploadBlobFromText(this.state.query, result);
+                         history.updateHistoryState();
+        });
 	                	}.bind(this))}}/>
 	        </span>
-	        <h4 className="Result" col-md-4>
+	        <h4 className="Result col-md-4">
 	        <Result 
 	        link = {this.state.link}/>
 	         </h4>

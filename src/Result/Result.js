@@ -5,7 +5,7 @@ class Result extends Component {
     constructor(props) {
 	    super(props);
 	    this.state = {
-	        link: Search.getLink
+	        link: props.link
 	    };
     }
 

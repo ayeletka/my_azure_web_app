@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "azure-cognitiveservices-websearch": "^1.0.0",
+    "azure-storage": "^2.10.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-scripts": "1.1.4"

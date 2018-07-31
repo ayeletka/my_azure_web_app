@@ -3,13 +3,15 @@ import me from './me.jpg';
 import './App.css';
 import Search from './Search/Search';
 import Result from './Result/Result';
+import History from './History/History';
+
 
 class App extends Component {
-  state = {
-    val: '',
-    link: ''
+    constructor(props) {
+      super(props);
   }
 
+ 
   render() {
     return (
       <div className="App">
@@ -23,6 +25,16 @@ class App extends Component {
         <Search />
         <Result
         />
+        <div className="history">
+        <div className="header">
+          <p>History</p>
+          <hr/>
+        </div>
+        <div className="history-table">
+          <History
+          />
+        </div>
+      </div>
       </div>
     );
   }
