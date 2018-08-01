@@ -1,11 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios'
-import App from '../App'
-import Result from '../Result/Result';
-import History from '../History/History';
-
-const historyApi = require('../History/HistoryApi');
-const history = require('../History/History');
 
 const SearchButton = (props) => {
     return (
@@ -23,7 +16,6 @@ class Search extends Component {
   	getLink = () => {
   		return this.state.link;
   	}
-
 
     handleInputChange = () => {
       this.setState({

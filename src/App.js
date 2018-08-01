@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import historyApi from './History/HistoryApi';
 import insta from './instagramPic.jpeg';
-import './App.css';
 import Search from './Search/Search';
 import Result from './Result/Result';
 import History from './History/History';
 import axios from 'axios';
+import './App.css';
 
 const API_KEY = '09ba53a3ba8243f68eb5374bbcad64c0'
 const API_URL = 'https://api.cognitive.microsoft.com/bing/v7.0/search'
@@ -18,19 +18,15 @@ class App extends Component {
           link : ''
       };
       this.updateHistoryState();
-
     }
 
      updateHistoryState = () => {
-        console.log("getBlobs2");
         historyApi.getAllBlobs((res) => {
-          console.log('hi', res, res.length);
           this.setState({jsonArrayHistory: res});
         });
     }
 
     bingWebSearch = () => {
-
       console.log(this.state.query)
         const axiosConfig = {
             headers: {'Ocp-Apim-Subscription-Key': API_KEY}

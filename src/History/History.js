@@ -18,9 +18,7 @@ class History extends Component {
 
     render() {
         const { data } = this.props;
-        console.log("data", data);
         const childs = data && data.map((artist, index) => (<Artist key={index} artist={artist} />) );
-        console.log("childs", childs);
        return (<table className="table historyTable">
             <thead>
             <tr>
