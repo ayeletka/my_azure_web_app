@@ -10,16 +10,13 @@ class Result extends Component {
     }
 
     render () {
-     console.log("hiii")
-     if (this.props.link === '')
-    	return (
-        <p>No link yet...</p>
-    	);
-    else {
-        return (
-            <a href={this.props.link} target='_blank'>{this.props.link}</a>
-        );
+    if (this.props.link === '')
+    	return (<p> ..... </p>);
+    else
+    {
+        return (<a href={this.props.link} target='_blank'>{this.props.link}</a>);
     }
-}}
+    }
+}
 
 export default Result;

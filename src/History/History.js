@@ -4,11 +4,8 @@ var historyApi = require('./HistoryApi');
 
 
 
-
-
-
 class History extends Component {
-  constructor(props) {
+    constructor(props) {
         super(props);
         this.state = {
             jsonArrayHistory: undefined
@@ -27,12 +24,12 @@ class History extends Component {
     }
 
 
-  render() {
-      // console.log("history render")
-      //   this.updateHistoryState()
-   return (
+    render() {
+    // console.log("history render")
+    //   this.updateHistoryState()
+        return (
             <table className="table historyTable">
-        <thead>
+            <thead>
             <tr>
                 <th className="tableHeader">
                     Name
@@ -41,10 +38,10 @@ class History extends Component {
                     Link
                 </th>
             </tr>
-        </thead>
-        <tbody>
+            </thead>
+            <tbody>
             {
-                 Array.isArray(this.jsonArrayHistory) &&
+                Array.isArray(this.jsonArrayHistory) &&
                 this.jsonArrayHistory.map((jsonHistory) =>
                     <tr key={"jsonHistory.artist"}>
                         <td className="tableData">
@@ -53,14 +50,13 @@ class History extends Component {
             				<td className="tableData">
                             {"jsonHistory.link"}
                         </td>
- 
                     </tr>
-             )
-        }
-        </tbody>
-    </table>
-        )
-  }
+                )
+            }
+            </tbody>
+            </table>
+            )
+    }
 }
 
 export default History;
