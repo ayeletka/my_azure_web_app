@@ -1,17 +1,55 @@
 import React, { Component } from 'react';
+import historyApi from './History/HistoryApi';
 import insta from './instagramPic.jpeg';
 import './App.css';
 import Search from './Search/Search';
 import Result from './Result/Result';
 import History from './History/History';
+import axios from 'axios';
 
+const API_KEY = '09ba53a3ba8243f68eb5374bbcad64c0'
+const API_URL = 'https://api.cognitive.microsoft.com/bing/v7.0/search'
 
 class App extends Component {
     constructor(props) {
       super(props);
+      this.state = {
+          jsonArrayHistory: undefined,
+          link : ''
+      };
+      this.updateHistoryState();
+
     }
 
- 
+     updateHistoryState = () => {
+        console.log("getBlobs2");
+        historyApi.getAllBlobs((res) => {
+          console.log('hi', res, res.length);
+          this.setState({jsonArrayHistory: res});
+        });
+    }
+
+    bingWebSearch = () => {
+
+      console.log(this.state.query)
+        const axiosConfig = {
+            headers: {'Ocp-Apim-Subscription-Key': API_KEY}
+        }
+        return axios.get(API_URL + '?q=' + encodeURIComponent(this.state.query + "Instagram"), axiosConfig)
+        .then(function(response) {
+            return response.data.webPages.value[0].url;
+        });
+    }
+
+    search = (query) => {
+        this.bingWebSearch().then((result) => {
+          this.setState({link: result}, () => {
+             historyApi.uploadBlobFromText(query, result);
+             this.updateHistoryState();
+          });
+        });
+    }
+
     render() {
       return (
         <div className="App">
@@ -22,18 +60,18 @@ class App extends Component {
           <p className="App-intro">
   			     Enter the artist you love and get a link to his instagram account
           </p>
-          <Search/>
-          <Result/>
+          <Search callback={this.search}/>
+          <Result data={ this.state.link }/>
           <div className="history">
           <div className="header">
             <p>History</p>
             <hr/>
           </div>
           <div className="history-table">
-            <History/>
+            <History data={ this.state.jsonArrayHistory }/>
           </div>
           </div>
-          </div>
+        </div>
       );
     }
 }
