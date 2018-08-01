@@ -7,7 +7,7 @@ import History from '../History/History';
 var historyApi = require('../History/HistoryApi');
 var history = require('../History/History');
 
-const API_KEY = '0596e6f076a64db38b8e213594b32599'
+const API_KEY = '09ba53a3ba8243f68eb5374bbcad64c0'
 const API_URL = 'https://api.cognitive.microsoft.com/bing/v7.0/search'
 
 
@@ -68,7 +68,7 @@ class Search extends Component {
 	                	.then(function(result){
 	                		this.setState({val: this.state.query, link: result}, () => {
                          historyApi.uploadBlobFromText(this.state.query, result);
-                         history.updateHistoryState();
+                         // history.updateHistoryState();
         });
 	                	}.bind(this))}}/>
 	        </span>

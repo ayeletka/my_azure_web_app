@@ -28,8 +28,8 @@ class History extends Component {
 
 
   render() {
-      console.log("history render")
-        this.updateHistoryState()
+      // console.log("history render")
+      //   this.updateHistoryState()
    return (
             <table className="table historyTable">
         <thead>
