@@ -9,11 +9,11 @@ class Result extends Component {
     }
 
     render () {
-    if (this.props.link === '')
+    if (this.props.data === '')
     	return (<p> ..... </p>);
     else
     {
-        return (<a href={this.props.link} target='_blank'>{this.props.link}</a>);
+        return (<a href={this.props.data} target='_blank'>{this.props.data}</a>);
     }
     }
 }

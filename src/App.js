@@ -26,19 +26,19 @@ class App extends Component {
         });
     }
 
-    bingWebSearch = () => {
+    bingWebSearch = (query) => {
       console.log(this.state.query)
         const axiosConfig = {
             headers: {'Ocp-Apim-Subscription-Key': API_KEY}
         }
-        return axios.get(API_URL + '?q=' + encodeURIComponent(this.state.query + "Instagram"), axiosConfig)
+        return axios.get(API_URL + '?q=' + encodeURIComponent(query + "Instagram"), axiosConfig)
         .then(function(response) {
             return response.data.webPages.value[0].url;
         });
     }
 
     search = (query) => {
-        this.bingWebSearch().then((result) => {
+        this.bingWebSearch(query).then((result) => {
           this.setState({link: result}, () => {
              historyApi.uploadBlobFromText(query, result);
              this.updateHistoryState();
